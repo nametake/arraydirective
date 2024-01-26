@@ -1,11 +1,20 @@
 type Mutation {
     createA(input: CreateAInput!): CreateAPayload!
+    createB(input: CreateBInput!): CreateBPayload!
 }
 
 input CreateAInput {
-    name: String!
+    aIDs: [ID!]! @list(max: 10)
 }
 
 type CreateAPayload {
-    a: A!
+    a: [A!]!
+}
+
+input CreateBInput {
+    bIDs: [ID!]! # want "bIDs has list directive"
+}
+
+type CreateBPayload {
+    b: [B!]!
 }

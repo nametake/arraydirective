@@ -1,4 +1,6 @@
 type Query {
-	a: A!
-	b: B!
+    a: A!
+    b: B!
+    aList(ids: [ID!]! @list(max: 64)): [A!]!
+    bList(ids: [ID!]!): [B!]! # want "argument ids of ids has no list directive"
 }

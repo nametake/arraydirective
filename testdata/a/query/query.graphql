@@ -1,13 +1,13 @@
 fragment AFragment1 on A {
-	name # want "NG"
+    name
 }
 
 fragment AFragment2 on A {
-	id
-	name # want "NG"
-	...BFragment
+    id
+    name
+    ...BFragment
 }
 
 fragment BFragment on A {
-	name # want "NG"
+    name
 }
