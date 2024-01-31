@@ -24,6 +24,13 @@ func TestAnalyzer(t *testing.T) {
 				directives: []string{"list"},
 			},
 		},
+		{
+			dir: "notypes",
+			args: args{
+				types:      []string{""},
+				directives: []string{"list"},
+			},
+		},
 	}
 	testdata := analysistest.TestData(t)
 	for _, tt := range tests {
