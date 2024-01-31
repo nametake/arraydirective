@@ -12,7 +12,7 @@ type CreateAPayload {
 }
 
 input CreateBInput {
-    bIDs: [ID!]! # want "bIDs has list directive"
+    bIDs: [ID!]! # want "aIDs has list directive"
 }
 
 type CreateBPayload {
