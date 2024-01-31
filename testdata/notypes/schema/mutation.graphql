@@ -5,16 +5,18 @@ type Mutation {
 
 input CreateAInput {
     aIDs: [ID!]! @list(max: 10)
+    names: [String!]! @list(max: 10)
 }
 
 type CreateAPayload {
-    a: [A!]!
+    a: [A!]! 
 }
 
 input CreateBInput {
-    bIDs: [ID!]! # want "bIDs has list directive"
+    bIDs: [ID!]! # want "aIDs has list directive"
 }
 
 type CreateBPayload {
     b: [B!]!
+    names: [String!]! # want "names has list directive"
 }

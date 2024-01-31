@@ -49,7 +49,7 @@ func run(types, directives []string) func(pass *gqlanalysis.Pass) (interface{}, 
 							}
 							for _, directive := range directives {
 								if arg.Directives.ForName(directive) == nil {
-									pass.Reportf(arg.Position, "argument %s of %s has no %s directive", arg.Name, arg.Name, directive)
+									pass.Reportf(arg.Position, "argument %s of %s has no %s directive", arg.Name, field.Name, directive)
 								}
 							}
 						}
