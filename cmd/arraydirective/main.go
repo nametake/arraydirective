@@ -17,7 +17,7 @@ func main() {
 	flag.StringVar(&flagDirectives, "directives", "", "required: comma-separated list of directives")
 	flag.StringVar(&flagTypes, "types", "", "comma-separated list of list types")
 
-	if flag.Parse(); flagTypes == "" || flagDirectives == "" {
+	if flag.Parse(); flagDirectives == "" {
 		flag.Usage()
 		return
 	}
