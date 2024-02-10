@@ -1,6 +1,6 @@
 # arraydirective
 
-arraydirective はGraphQLのスキーマファイルの配列に指定子たディレクティブがついていないことを確認します。
+arraydirective verifies that the array of schema files in GraphQL does not have specified directives.
 
 ## Installation
 
@@ -25,7 +25,7 @@ arraydirective -schema="schema/**/*.graphql" -query="query/**/*.graphql" -types=
       comma-separated list of list types
 ```
 
-typesの指定がない場合、全てのarrayが対象になります。
+If no types are specified, all arrays will be targeted.
 
 ## Example
 
