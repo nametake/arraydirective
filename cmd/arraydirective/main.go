@@ -14,8 +14,13 @@ func main() {
 		flagDirectives string
 	)
 
-	flag.StringVar(&flagTypes, "types", "ID", "target types")
-	flag.StringVar(&flagDirectives, "directives", "list", "must directives")
+	flag.StringVar(&flagDirectives, "directives", "", "required: comma-separated list of directives")
+	flag.StringVar(&flagTypes, "types", "", "comma-separated list of list types")
+
+	if flag.Parse(); flagTypes == "" || flagDirectives == "" {
+		flag.Usage()
+		return
+	}
 
 	types := strings.Split(flagTypes, ",")
 	directives := strings.Split(flagDirectives, ",")
