@@ -27,7 +27,7 @@ func TestAnalyzer(t *testing.T) {
 		{
 			dir: "notypes",
 			args: args{
-				types:      []string{""},
+				types:      []string{},
 				directives: []string{"list"},
 			},
 		},
