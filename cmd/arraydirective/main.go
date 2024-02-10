@@ -8,6 +8,20 @@ import (
 	"github.com/nametake/arraydirective"
 )
 
+func parseDirectives(directives string) []string {
+	if directives == "" {
+		return nil
+	}
+	return strings.Split(directives, ",")
+}
+
+func parseTypes(types string) []string {
+	if types == "" {
+		return nil
+	}
+	return strings.Split(types, ",")
+}
+
 func main() {
 	var (
 		flagTypes      string
@@ -22,7 +36,7 @@ func main() {
 		return
 	}
 
-	types := strings.Split(flagTypes, ",")
-	directives := strings.Split(flagDirectives, ",")
+	types := parseTypes(flagTypes)
+	directives := parseDirectives(flagDirectives)
 	multichecker.Main(arraydirective.NewAnalyzer(types, directives))
 }
