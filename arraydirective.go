@@ -28,15 +28,8 @@ func run(types, directives []string) func(pass *gqlanalysis.Pass) (interface{}, 
 			if t.Kind == ast.InputObject {
 				for _, field := range t.Fields {
 					if field != nil && field.Type != nil && field.Type.Elem != nil {
-						// typeが0のときはチェックを必ずする
-						// typesが0出ないときはelmsのチェックをする
-						if len(types) == 0 {
-							for _, directive := range directives {
-								if field.Directives.ForName(directive) == nil {
-									pass.Reportf(field.Position, "%s has %s directive", field.Name, directive)
-								}
-							}
-						} else if slices.Contains(types, field.Type.Elem.NamedType) {
+						typesLength := len(types)
+						if typesLength == 0 || (typesLength > 0 && slices.Contains(types, field.Type.Elem.NamedType)) {
 							for _, directive := range directives {
 								if field.Directives.ForName(directive) == nil {
 									pass.Reportf(field.Position, "%s has %s directive", field.Name, directive)
@@ -50,13 +43,8 @@ func run(types, directives []string) func(pass *gqlanalysis.Pass) (interface{}, 
 				for _, field := range t.Fields {
 					for _, arg := range field.Arguments {
 						if arg != nil && arg.Type != nil && arg.Type.Elem != nil {
-							if len(types) == 0 {
-								for _, directive := range directives {
-									if arg.Directives.ForName(directive) == nil {
-										pass.Reportf(arg.Position, "argument %s of %s has no %s directive", arg.Name, field.Name, directive)
-									}
-								}
-							} else if slices.Contains(types, arg.Type.Elem.NamedType) {
+							typesLength := len(types)
+							if typesLength == 0 || (typesLength > 0 && slices.Contains(types, arg.Type.Elem.NamedType)) {
 								for _, directive := range directives {
 									if arg.Directives.ForName(directive) == nil {
 										pass.Reportf(arg.Position, "argument %s of %s has no %s directive", arg.Name, field.Name, directive)
