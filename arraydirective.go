@@ -21,7 +21,6 @@ func NewAnalyzer(types, directives []string) *gqlanalysis.Analyzer {
 
 func run(types, directives []string) func(pass *gqlanalysis.Pass) (interface{}, error) {
 	return func(pass *gqlanalysis.Pass) (interface{}, error) {
-
 		for _, t := range pass.Schema.Types {
 			if t.BuiltIn {
 				continue
@@ -29,7 +28,7 @@ func run(types, directives []string) func(pass *gqlanalysis.Pass) (interface{}, 
 			if t.Kind == ast.InputObject {
 				for _, field := range t.Fields {
 					if field != nil && field.Type != nil && field.Type.Elem != nil {
-						if !slices.Contains(types, field.Type.Elem.NamedType) {
+						if len(types) == 0 && !slices.Contains(types, field.Type.Elem.NamedType) {
 							continue
 						}
 						for _, directive := range directives {
@@ -44,7 +43,7 @@ func run(types, directives []string) func(pass *gqlanalysis.Pass) (interface{}, 
 				for _, field := range t.Fields {
 					for _, arg := range field.Arguments {
 						if arg != nil && arg.Type != nil && arg.Type.Elem != nil {
-							if !slices.Contains(types, arg.Type.Elem.NamedType) {
+							if len(types) == 0 && !slices.Contains(types, arg.Type.Elem.NamedType) {
 								continue
 							}
 							for _, directive := range directives {

@@ -1,6 +1,7 @@
 type Mutation {
     createA(input: CreateAInput!): CreateAPayload!
     createB(input: CreateBInput!): CreateBPayload!
+    stringList(input: StringListInput!): StringListPayload!
 }
 
 input CreateAInput {
@@ -17,4 +18,12 @@ input CreateBInput {
 
 type CreateBPayload {
     b: [B!]!
+}
+
+input StringListInput {
+    strs: [String!]!
+}
+
+type StringListPayload {
+    strs: [String!]!
 }
